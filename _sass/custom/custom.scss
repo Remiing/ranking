@@ -20,7 +20,8 @@ body {
   @include mq(md) {
     flex-wrap: nowrap;
     position: fixed;
-    width: $nav-width-md;
+    // width: $nav-width-md;
+    width: 0;
     height: 100%;
     flex-direction: column;
     border-right: $border $border-color;
@@ -41,7 +42,8 @@ body {
   @include mq(md) {
     position: relative;
     max-width: $content-width;
-    margin-left: $nav-width-md;
+    // margin-left: $nav-width-md;
+    margin-left: 0;
   }
 
   @include mq(lg) {
