@@ -12,7 +12,7 @@ def get_characterInfo(name):
     profile = soup.select_one('.search_com_chk')
 
     if not profile:
-        print(f'{characterName} 캐럭터 정보가 없습니다')
+
         return
 
     className = profile.select_one('td > dl > dd').text
@@ -29,6 +29,7 @@ def get_characterInfo(name):
         'level': int(level),
         'experience': int(experience),
         'popularity': int(popularity),
+        'image': image_url
     }
 
     return character_data
@@ -40,9 +41,11 @@ def gather_members(members):
         member_data = get_characterInfo(member)
         if member_data:
             member_data_list.append(member_data)
-            print(member, 'complete')
+            print(f'{member_data["streamer"]:7} {member_data["nickname"]:7} {member_data["class"]:6} {member_data["level"]:3} {member_data["experience"]:12} {member_data["popularity"]:4} {member_data["image"]}')
+            # print(member, 'complete')
         else:
-            print(member, 'fail')
+            print(f'{member[0]:6} {member[1]:7} 캐럭터 정보가 없습니다')
+            # print(member, 'fail')
     df_members = pd.DataFrame(data=member_data_list)
     df_members = df_members.sort_values(by=['level', 'experience'], ascending=[False, False])
 
