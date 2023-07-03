@@ -14,7 +14,7 @@ permalink: /
 
 ---
 
-매일 새벽 12~1시에 갱신됩니다. <br>
+매일 새벽 5~6시에 갱신됩니다. <br>
 Last Update {{site.data.update_time[-1].update_time}}
 {: .text-right }
 
