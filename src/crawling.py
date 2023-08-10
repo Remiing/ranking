@@ -6,13 +6,14 @@ import pandas as pd
 
 def get_characterInfo(name):
     streamerName, characterName = name
-    url = f'https://maplestory.nexon.com/N23Ranking/World/Total?c={characterName}&w=0'
-    response = requests.get(url)
+    url1 = f'https://maplestory.nexon.com/N23Ranking/World/Total?c={characterName}&w=0'
+    url2 = f'https://maplestory.nexon.com/N23Ranking/World/Union?c={characterName}&w=0'
+
+    response = requests.get(url1)
     soup = BeautifulSoup(response.text, 'html.parser')
     profile = soup.select_one('.search_com_chk')
 
     if not profile:
-
         return
 
     className = profile.select_one('td > dl > dd').text
@@ -22,6 +23,15 @@ def get_characterInfo(name):
     image_url = profile.select_one('td > span > img:nth-child(1)')['src']
     urllib.request.urlretrieve(image_url, f'./assets/images/character/{characterName}.png')
 
+    response = requests.get(url2)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    profile = soup.select_one('.search_com_chk')
+
+    if not profile:
+        return
+
+    union = profile.select_one('td:nth-child(3)').text.replace(',', '')
+
     character_data = {
         'streamer': streamerName,
         'nickname': characterName,
@@ -29,6 +39,7 @@ def get_characterInfo(name):
         'level': int(level),
         'experience': int(experience),
         'popularity': int(popularity),
+        'union': int(union),
         'image': image_url
     }
 
@@ -41,11 +52,10 @@ def gather_members(members):
         member_data = get_characterInfo(member)
         if member_data:
             member_data_list.append(member_data)
-            print(f'{member_data["streamer"]:7} {member_data["nickname"]:7} {member_data["class"]:6} {member_data["level"]:3} {member_data["experience"]:12} {member_data["popularity"]:4} {member_data["image"]}')
-            # print(member, 'complete')
+            print(f'{member_data["streamer"]:7} {member_data["nickname"]:7} {member_data["class"]:6} {member_data["level"]:3} {member_data["popularity"]:4} {member_data["union"]}')
         else:
             print(f'{member[0]:6} {member[1]:7} 캐럭터 정보가 없습니다')
-            # print(member, 'fail')
+
     df_members = pd.DataFrame(data=member_data_list)
     df_members = df_members.sort_values(by=['level', 'experience'], ascending=[False, False])
 
@@ -53,6 +63,6 @@ def gather_members(members):
 
 
 if __name__ == '__main__':
-    get_characterInfo('도적삼식')
+    get_characterInfo(('삼식', '도적삼식'))
 
 
