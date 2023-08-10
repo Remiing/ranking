@@ -9,7 +9,7 @@ permalink: /
 # Ranking
 {: .fs-9 }
 
-스트리머 메이플 하이퍼버닝 랭킹
+에악회 랭킹
 {: .fs-6 .fw-300 }
 
 ---
@@ -21,7 +21,7 @@ Last Update {{site.data.update_time[-1].update_time}}
 {% assign last_data = site.data.update_time[-1].filename | remove: ".csv" %}
 {% assign members_data = site.data.chart[last_data] %}
 
-| 순위 | 스트리머 |  | 캐릭터 정보 | 레벨 | 인기도 |
+| 순위 | 스트리머 |  | 캐릭터 정보 | 레벨 | 유니온 | 인기도 |
 |:-:|:-|:-:|:-|:-:|:-:|:-:|
 {% assign rank = 1 -%}
 {% for member in members_data -%}
@@ -30,6 +30,7 @@ Last Update {{site.data.update_time[-1].update_time}}
 |<span>![](./assets/images/character/{{member.nickname}}.png){: .character-img}</span>{{-raw-}}
 |{{member.nickname-}}<br>{{member.class-}}
 |{{member.level-}}
+|{{member.union-}}
 |{{member.popularity-}}|
 {% endfor %}
 
