@@ -20,8 +20,8 @@ body {
   @include mq(md) {
     flex-wrap: nowrap;
     position: fixed;
-    // width: $nav-width-md;
-    width: 0;
+    width: $nav-width-md;
+    // width: 0;
     height: 100%;
     flex-direction: column;
     border-right: $border $border-color;
@@ -29,10 +29,10 @@ body {
   }
 
   @include mq(lg) {
-    // width: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
-    // min-width: $nav-width;
-    width: 0;
-    min-width: 0;
+    width: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
+    min-width: $nav-width;
+    // width: 0;
+    // min-width: 0;
   }
 }
 
@@ -42,13 +42,13 @@ body {
   @include mq(md) {
     position: relative;
     max-width: $content-width;
-    // margin-left: $nav-width-md;
-    margin-left: 0;
+    margin-left: $nav-width-md;
+    // margin-left: 0;
   }
 
   @include mq(lg) {
     margin-left: calc(
-      (100% - #{$nav-width + $content-width}) / 2
+      (100% - #{$nav-width + $content-width}) / 2 + #{$nav-width}
     );
   }
 }
@@ -140,7 +140,7 @@ th,
 td {
   @include fs-2;
 
-  min-width: 100px;
+  min-width: 60px;
   padding-top: $sp-2;
   padding-right: 0;
   padding-bottom: $sp-2;

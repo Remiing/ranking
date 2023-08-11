@@ -6,11 +6,8 @@ description: ""
 permalink: /
 ---
 
-# Ranking
+# 메악회
 {: .fs-9 }
-
-에악회 랭킹
-{: .fs-6 .fw-300 }
 
 ---
 
