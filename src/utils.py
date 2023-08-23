@@ -38,7 +38,7 @@ def range_union_increase(folder_path, date_range=7):
         data_frame = pd.read_csv(folder_path + file_name)
         union_dict = data_frame.set_index('nickname')['union'].to_dict()
         new_df = pd.DataFrame(data=union_dict, index=[date])
-        df_union = df_union.append(new_df)
+        df_union = pd.concat([df_union, new_df])
 
     return df_union
 
@@ -56,7 +56,7 @@ def range_level_increase(folder_path, exp_path, date_range=7):
         for key, value in level_dict.items():
             level_dict[key] = value[0] + math.floor(value[1] / exp_max[value[0]] * 100) / 100
         new_df = pd.DataFrame(data=level_dict, index=[date])
-        df_level = df_level.append(new_df)
+        df_level = pd.concat([df_level, new_df])
 
     return df_level
 

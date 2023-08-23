@@ -1,7 +1,5 @@
 from datetime import datetime, timezone, timedelta
 import yaml
-
-# from src.utils import load_yaml, update_log
 from src import crawling, utils
 
 
