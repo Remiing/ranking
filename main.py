@@ -16,10 +16,10 @@ def run():
     log = utils.update_log(filename)
     with open('./_data/update_time.yml', 'a') as file:
         yaml.dump(log, file, default_flow_style=False)
-    df_union = utils.range_union_increase('./_data/chart/', 14)
-    df_union.to_csv('./_data/union_increase.csv')
-    df_level = utils.range_level_increase('./_data/chart/', './_data/experience.yml', 14)
-    df_level.to_csv('./_data/level_increase.csv')
+    # df_union = utils.range_union_increase('./_data/chart/', 14)
+    # df_union.to_csv('./_data/union_increase.csv')
+    # df_level = utils.range_level_increase('./_data/chart/', './_data/experience.yml', 14)
+    # df_level.to_csv('./_data/level_increase.csv')
 
 
 if __name__ == '__main__':
